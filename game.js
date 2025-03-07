@@ -35,7 +35,7 @@ function preload() {
 
 function create() {
     // Ajout du décor avec un ajustement correct
-    this.background = this.add.tileSprite(400, 200, 1600, 800, 'background').setScale(0.5);
+    this.background = this.add.tileSprite(0, 0, 1600, 400, 'background').setOrigin(0, 0);
 
     // Vérification des dimensions de la spritesheet du homard
     const lobsterTexture = this.textures.get('lobster');
@@ -90,6 +90,7 @@ function create() {
 
     // Activer le défilement du jeu
     this.cameras.main.setBounds(0, 0, 1600, 400);
+    this.cameras.main.setViewport(0, 0, 800, 400);
     this.physics.world.setBounds(0, 0, 1600, 400);
     this.cameras.main.startFollow(lobster);
 
@@ -102,7 +103,7 @@ function update() {
     if (gameOver) return;
 
     // Défilement du fond
-    this.background.tilePositionX += 2; // Défilement du fond
+    this.background.tilePositionX += 4; // Augmenter légèrement la vitesse pour un meilleur effet visuel
 
     // Saut du homard
     if (Phaser.Input.Keyboard.JustDown(cursors.space) && lobster.body.blocked.down) {
